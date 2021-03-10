@@ -98,6 +98,7 @@
     <Content Include="Assets\images\danang.png" />
     <Content Include="Assets\images\hanoi.png" />
     <Content Include="Assets\images\nhatrang.png" />
+    <Content Include="Assets\images\background_intro.png" />
     <Content Include="Assets\images\product\hcm_can_ho1.jpg" />
     <Content Include="Assets\images\product\hcm_studio_1.jpg" />
     <Content Include="Assets\images\product\hcm_studio_2.jpg" />
@@ -117,7 +118,10 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -135,6 +139,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Place\Index.cshtml" />
+    <Content Include="Views\Detail\Index.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

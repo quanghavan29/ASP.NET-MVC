@@ -57,7 +57,7 @@
         <div class="container">
             <h4 class="greeting__wrapper">Chào mừng đến với Luxstay!</h4>
             <p class="greeting__text__wrapper">
-                <a href="">Đăng nhập</a> hoặc <a href="">Đăng ký</a> để trải nghiệm !
+                @Html.ActionLink("Đăng nhập", "Login", "Admin") hoặc @Html.ActionLink("Đăng ký", "Register", "Admin") để trải nghiệm !
             </p>
         </div>
     </section>
@@ -67,7 +67,7 @@
             <div class="row">
 
                 <div class="col-lg-3" style="padding-left: 11px; padding-right: 10px;">
-                    <a href="homestayController" style="text-decoration: none ; color: black;">
+                    <a href="../Place" style="text-decoration: none ; color: black;">
                         <div class="card service__item shadow">
                             <img style="height: 350px; border-radius: 3px;"
                                  class="card-img-top image__service img-fluid"
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="col-lg-3" style="padding-left: 10px; padding-right: 10px;">
-                    <a href="#" style="text-decoration: none ; color: black">
+                    <a href="../Place" style="text-decoration: none ; color: black">
                         <div class="card service__item shadow">
                             <img style="height: 350px; border-radius: 3px;"
                                  class="card-img-top image__service img-fluid"
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="col-lg-3" style="padding-left: 10px; padding-right: 10px">
-                    <a href="carRent.jsp" style="text-decoration: none ; color: black">
+                    <a href="../Place" style="text-decoration: none ; color: black">
                         <div class="card service__item shadow">
                             <img style="height: 350px; border-radius: 3px;"
                                  class="card-img-top img-fluid image__service"
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="col-lg-3" style="padding-left: 10px; padding-right: 9px">
-                    <a href="#" style="text-decoration: none ; color: black">
+                    <a href="../Place" style="text-decoration: none ; color: black">
                         <div class="card service__item shadow">
                             <img style="height: 350px; border-radius: 3px;"
                                  class="card-img-top img-fluid image__service"
@@ -133,44 +133,48 @@
             <hr />
 
             <div class="row" style="margin-left: -0.05rem;">
-
-                <div class="card" style="width: 17rem; border: none;">
-                    <img style="width: 265px; height: 180px"
-                         src="~/Assets/images/product/hn_can_ho_1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="room">Căn hộ dịch vụ - 2 phòng ngủ</p>
-                        <svg style="margin-top: -30px; margin-left: -20px; color: #F65E39;"
-                             xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
-                            <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                        </svg><p style="margin-top: -38px;">*BOM HOMES*</p>
-                        <p class="price_and_address">1,200,000đ/đêm - Hà Nội</p>
+                <a href="../Detail" style="color: #555555;">
+                    <div class="card" style="width: 17rem; border: none;">
+                        <img style="width: 265px; height: 180px"
+                             src="~/Assets/images/product/hn_can_ho_1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="room">Căn hộ dịch vụ - 2 phòng ngủ</p>
+                            <svg style="margin-top: -30px; margin-left: -20px; color: #F65E39;"
+                                 xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+                                <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                            </svg><p style="margin-top: -38px;">*BOM HOMES*</p>
+                            <p class="price_and_address">1,200,000đ/đêm - Hà Nội</p>
+                        </div>
+                        <a href="">
+                            <!-- Favorite -->
+                            <svg style="position: absolute; top: 190px; left: 240px; cursor: pointer;"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                            </svg>
+                        </a>
                     </div>
-                    <a href="">
-                        <svg style="position: absolute; top: 190px; left: 240px; cursor: pointer;"
-                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                            <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                        </svg>
-                    </a>
-                </div>
+                </a>
 
-                <div class="card" style="width: 17rem; border: none;">
-                    <img style="width: 265px; height: 180px"
-                         src="~/Assets/images/product/hn_can_ho_2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="room">Căn hộ dịch vụ - 2 phòng ngủ</p>
-                        <svg style="margin-top: -30px; margin-left: -20px; color: #F65E39;"
-                             xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
-                            <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                        </svg><p style="margin-top: -38px;">*CANVAS LUXURY*</p>
-                        <p class="price_and_address">900,000đ/đêm - Hà Nội</p>
+                <a href="../Detail" style="color: #555555;">
+                    <div class="card" style="width: 17rem; border: none;">
+                        <img style="width: 265px; height: 180px"
+                             src="~/Assets/images/product/hn_can_ho_2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="room">Căn hộ dịch vụ - 2 phòng ngủ</p>
+                            <svg style="margin-top: -30px; margin-left: -20px; color: #F65E39;"
+                                 xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+                                <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                            </svg><p style="margin-top: -38px;">*CANVAS LUXURY*</p>
+                            <p class="price_and_address">900,000đ/đêm - Hà Nội</p>
+                        </div>
+                        <a href="">
+                            <svg style="position: absolute; top: 190px; left: 240px; cursor: pointer;"
+                                 xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                            </svg>
+                        </a>
                     </div>
-                    <a href="">
-                        <svg style="position: absolute; top: 190px; left: 240px; cursor: pointer;"
-                             xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                            <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                        </svg>
-                    </a>
-                </div>
+                </a>
 
                 <div class="card" style="width: 17rem; border: none;">
                     <img style="width: 265px; height: 180px"

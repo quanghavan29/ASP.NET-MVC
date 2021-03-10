@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="~/Assets/css/style.css">
+    <link rel="stylesheet" href="~/Assets/css/style.css">
     <link rel="stylesheet" href="~/Assets/css/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <!-- Bootstrap CSS -->
@@ -17,7 +17,7 @@
 
     <div class="header">
         <div>
-            <a href="">
+            <a href="../Home">
                 <svg version="1.1" viewBox="0 0 244 50" class="svg-icon svg-fill" style="width: 244px;">
                     <path pid="0" d="M25.093 0c13.781.06 24.94 11.317
                       24.882 25.106C49.917 38.894 38.663 50.058 24.88 50 11.1
@@ -32,8 +32,9 @@
         </div>
         <div class="header_link">
             <a href="">Host</a>
-            <a href="">Đăng Ký</a>
-            <a href="login">Đăng Nhập</a>
+            @Html.ActionLink("Đăng Ký", "Register", "Admin")
+            @Html.ActionLink("Đăng Nhập", "Login", "Admin")
+   @*         <a href="../Login/Index.cshtml">Đăng Nhập</a>*@
         </div>
     </div>
 
