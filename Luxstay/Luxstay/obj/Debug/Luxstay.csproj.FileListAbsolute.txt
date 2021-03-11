@@ -54,3 +54,7 @@ F:\ASP.NET-MVC\Luxstay\Luxstay\obj\Debug\Luxstay.csproj.CoreCompileInputs.cache
 F:\ASP.NET-MVC\Luxstay\Luxstay\obj\Debug\Luxstay.csproj.CopyComplete
 F:\ASP.NET-MVC\Luxstay\Luxstay\obj\Debug\Luxstay.dll
 F:\ASP.NET-MVC\Luxstay\Luxstay\obj\Debug\Luxstay.pdb
+F:\ASP.NET-MVC\Luxstay\Luxstay\bin\EntityFramework.dll
+F:\ASP.NET-MVC\Luxstay\Luxstay\bin\EntityFramework.SqlServer.dll
+F:\ASP.NET-MVC\Luxstay\Luxstay\bin\EntityFramework.xml
+F:\ASP.NET-MVC\Luxstay\Luxstay\bin\EntityFramework.SqlServer.xml

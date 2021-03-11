@@ -16,8 +16,8 @@
     font-weight: 700;
 }
 
-.header a:hover {
-    color: #F65E39;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .header a:hover {
+        color: #F65E39;
+        text-decoration: none;
+        cursor: pointer;
+    }

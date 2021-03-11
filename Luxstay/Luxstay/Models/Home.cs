@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Luxstay.Models
+{
+    public class Home
+    {
+        public int home_id { get; set; }
+
+        public string home_name { get; set; }
+
+        public string home_type { get; set; }
+
+        public int room_number { get; set; }
+
+        public int price { get; set; }
+
+        public Place place { get; set; }
+
+        public string image_intro { get; set; }
+    }
+}

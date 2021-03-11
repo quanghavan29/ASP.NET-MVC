@@ -1,7 +1,191 @@
-﻿
+﻿@model dynamic
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>LUXSTAY</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/Assets/css/style.css">
+    <link rel="stylesheet" href="~/Assets/css/paging.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <section class="slide__carousel__wrapper">
+        <div class="container">
+            <div id="carouselId" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselId" data-slide-to="1"></li>
+                    <li data-target="#carouselId" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <img src="~/Assets/images/background_intro_1.png" class="img-fluid" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Assets/images/background_intro_2.png" class="img-fluid" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Assets/images/background_intro_3.png" class="img-fluid" alt="Third slide">
+                    </div>
+                </div>
+
+
+                <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <hr />
+        </div>
+    </section>
+
+    <section class="greeting__wrap__section" style="padding-top: 5px;">
+        <div class="container">
+            <h4 class="greeting__wrapper">Chào mừng đến với Luxstay!</h4>
+            <p class="greeting__text__wrapper">
+                @Html.ActionLink("Đăng nhập", "Login", "Admin") hoặc @Html.ActionLink("Đăng ký", "Register", "Admin") để trải nghiệm !
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container service__homemie__wrap">
+            <div class="row">
+                @foreach (var place in Model.places)
+                {
+                    <div class="col-lg-3" style="padding-left: 11px; padding-right: 10px;">
+                        <a href="../Place?place_id=@place.place_id&total_home=@place.total_home&place_name=@place.place_name"
+                           style="text-decoration: none ; color: black;">
+                            <div class="card service__item shadow">
+                                <img style="height: 350px; border-radius: 3px;"
+                                     class="card-img-top image__service img-fluid"
+                                     src="~/Assets/images/@place.image" alt="Card image cap">
+                                <div class="address_title">
+                                    <p>@place.place_name</p>
+                                    <span>@place.total_home chỗ ở</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="place__travel__section" style="margin-top: 25px;">
+        <div class="container">
+            <h4 class="greeting__wrapper">Địa điểm nổi bật</h4>
+            <p>Cùng Luxstay bắt đầu chuyến hành trình chinh phục thế giới của bạn</p>
+            <hr />
+            <div class="row" style="margin-left: -0.05rem;">
+                @foreach (var home in Model.homes)
+                {
+                    <a href="../Detail" style="color: #555555;">
+                        <div class="card" style="width: 17rem; border: none;">
+                            <img style="width: 265px; height: 180px"
+                                 src="~/Assets/images/product/@home.image_intro" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="room">@home.home_type - @home.room_number phòng ngủ</p>
+                                <svg style="margin-top: -30px; margin-left: -20px; color: #F65E39;"
+                                     xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+                                    <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                                </svg><p style="margin-top: -38px;">*@home.home_name*</p>
+                                @{
+                                    int price = home.price;
+                                    int million = price / 1000;
+                                    int hundred = price % 1000;
+
+                                    if (million > 0)
+                                    {
+                                        if (hundred > 0)
+                                        {
+                                            <p class="price_and_address">@million,@hundred,000đ/đêm - @home.place.place_name</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="price_and_address">@million,000,000đ/đêm - @home.place.place_name</p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p class="price_and_address">@hundred,000đ/đêm - @home.place.place_name</p>
+                                    }
+                                }
+                            </div>
+                            <a href="">
+                                <!-- Favorite -->
+                                <svg style="position: absolute; top: 190px; left: 240px; cursor: pointer;"
+                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+        <!-- PAGGING -->
+        <nav aria-label="Page navigation example">
+            @{ 
+                int currentPage = ViewBag.pageIndex;
+            }
+            <ul class="pagination justify-content-center">
+                @if (currentPage > 1) {
+                        int previous = currentPage - 1;
+                <li class="page-item">
+                    <a class="page-link" href="../Home?pageIndex=@previous" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                }
+                @for (int i = 1; i <= ViewBag.totalPage; i++)
+                {
+                    <li class="page-item">
+                        @{
+                            string active = "";
+                            if (currentPage == i)
+                            {
+                                active += "active";
+                            }
+                        }
+                        <a class="page-link @active" href="../Home?pageIndex=@i">@i</a>
+                    </li>
+                }
+                @if (currentPage < ViewBag.totalPage)
+                    {
+                        int next = currentPage + 1;
+                    <li class="page-item">
+                        <a class="page-link" href="../Home?pageIndex=@next" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
+                }
+            </ul>
+        </nav>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
 
