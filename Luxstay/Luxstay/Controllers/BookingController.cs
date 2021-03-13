@@ -8,7 +8,8 @@ namespace Luxstay.Controllers
 {
     public class BookingController : Controller
     {
-        // GET: Booking
+        // POST: Booking
+        [HttpPost]
         public ActionResult Index()
         {
             return View();
