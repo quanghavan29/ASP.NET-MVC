@@ -20,5 +20,11 @@ namespace Luxstay.Models
         public Place place { get; set; }
 
         public string image_intro { get; set; }
+
+        public string address { get; set; }
+
+        public string short_description { get; set; }
+        
+        public string detail_description { get; set; }
     }
 }

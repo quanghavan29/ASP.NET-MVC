@@ -32,8 +32,16 @@
         </div>
         <div class="header_link">
             <a href="">Host</a>
-            @Html.ActionLink("Đăng Ký", "Register", "Admin")
-            @Html.ActionLink("Đăng Nhập", "Login", "Admin")
+            @if (Session["user"] != null)
+            {
+                @Html.ActionLink("Xin Chào " + Session["lastName"], "Profile")
+                @Html.ActionLink("Đăng xuất", "../Logout")
+            }
+            else
+            {
+                @Html.ActionLink("Đăng Ký", "../Register")
+                @Html.ActionLink("Đăng Nhập", "../Login")
+            }
         </div>
     </div>
 

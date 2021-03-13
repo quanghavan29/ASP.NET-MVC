@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Title of the document</title>
+    <link rel="stylesheet" href="~/Assets/css/paging.css">
 </head>
 
 <body style="color: #555555;">
@@ -36,7 +37,7 @@
         <div class="row" style="margin-left: -0.05rem;">
             @foreach (var home in Model)
             {
-                <a href="../Detail" style="color: #555555;">
+                <a href="../Detail?home_id=@home.home_id" style="color: #555555;">
                     <div class="card" style="width: 17rem; border: none;">
                         <img style="width: 265px; height: 180px"
                              src="~/Assets/images/product/@home.image_intro" class="card-img-top" alt="...">
@@ -48,8 +49,8 @@
                             </svg><p style="margin-top: -38px;">*@home.home_name*</p>
                             @{
                                 int price = home.price;
-                                int million = price / 1000;
-                                int hundred = price % 1000;
+                                int million = price / 1000000;
+                                int hundred = price % 1000000 / 1000;
 
                                 if (million > 0)
                                 {
@@ -84,20 +85,42 @@
 
     <!-- PAGGING -->
     <nav aria-label="Page navigation example">
+        @{
+            int currentPage = ViewBag.pageIndex;
+        }
         <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+            @if (currentPage > 1)
+            {
+                int previous = currentPage - 1;
+                <li class="page-item">
+                    <a class="page-link" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@previous" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= ViewBag.totalPage; i++)
+            {
+                <li class="page-item">
+                    @{
+                        string active = "";
+                        if (currentPage == i)
+                        {
+                            active += "active";
+                        }
+                    }
+                    <a class="page-link @active" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@i">@i</a>
+                </li>
+            }
+            @if (currentPage < ViewBag.totalPage)
+            {
+                int next = currentPage + 1;
+                <li class="page-item">
+                    <a class="page-link" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@next" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+            }
         </ul>
     </nav>
 

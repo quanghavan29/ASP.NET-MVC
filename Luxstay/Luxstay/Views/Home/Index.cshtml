@@ -98,7 +98,7 @@
             <div class="row" style="margin-left: -0.05rem;">
                 @foreach (var home in Model.homes)
                 {
-                    <a href="../Detail" style="color: #555555;">
+                    <a href="../Detail?home_id=@home.home_id" style="color: #555555;">
                         <div class="card" style="width: 17rem; border: none;">
                             <img style="width: 265px; height: 180px"
                                  src="~/Assets/images/product/@home.image_intro" class="card-img-top" alt="...">
@@ -110,8 +110,8 @@
                                 </svg><p style="margin-top: -38px;">*@home.home_name*</p>
                                 @{
                                     int price = home.price;
-                                    int million = price / 1000;
-                                    int hundred = price % 1000;
+                                    int million = price / 1000000;
+                                    int hundred = price % 1000000 / 1000;
 
                                     if (million > 0)
                                     {

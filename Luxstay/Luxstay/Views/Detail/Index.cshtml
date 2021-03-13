@@ -15,50 +15,36 @@
         <svg style="margin-top: -30px; margin-left: -20px; color: #F65E39;"
              xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
             <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-        </svg><p style="margin-top: -38px;">*BOM HOMES*</p>
+        </svg><p style="margin-top: -38px; font-weight: bold;">*@Model.home.home_name*</p>
     </div>
     <section>
         <div class="container" style="margin-top: -20px; margin-bottom: -20px;">
             <div class="row">
-                <div class="col-lg-4" style="padding-left: 0px; padding-right: 0px">
-                    <img src="~/Assets/images/product/hcm_can_ho1.jpg" style="height: 300px;padding-right: 10px;" class="image-roomDetail img-fluid">
+                @foreach(var image in Model.imagesDetails) {
+                <div class="col-lg-4" style="padding-left: 5px; padding-right: 5px;">
+                    <img src="~/Assets/images/product/@image.image_url"
+                         style="height: 300px; border-radius: 10px; width: 440px; height: 290px;" class="img-fluid">
                 </div>
-                <div class="col-lg-4" style="padding-left: 0px; padding-right: 0px">
-                    <img src="~/Assets/images/product/hcm_studio_1.jpg" style="height: 300px;padding-right: 10px;" class="image-roomDetail img-fluid">
-                </div>
-                <div class="col-lg-4" style="padding-left: 0px; padding-right: 0px">
-                    <img src="~/Assets/images/product/hcm_studio_3.jpg" style="height: 300px;padding-right: 10px;" class="image-roomDetail img-fluid">
-                </div>
+                }
             </div>
         </div>
         <div class="container">
             <div class="row" style="padding-top: 50px;">
                 <div class="col-lg-9" style="border-right: 1px dotted;">
                     <div>
+                        <p style="margin-bottom: 15px; font-weight: bold; margin-top: -15px;">@Model.home.short_description</p>
                         <div>
                             <i class="fas fa-building" style="color: gray; padding-right: 3px;"></i>
-                            <span class="text-style-bold">Căn hộ dịch vụ</span>
+                            <span class="text-style-bold" style="font-weight: bold; color: gray;">@Model.home.home_type</span>
                         </div>
                         <div>
                             <i class="fas fa-map-marker-alt" style="color: gray; padding-right: 5px;">
-                            </i> <span class="text-style-bold">Cầu Giấy, Hà Nội, Việt Nam</span>
+                            </i> <span class="text-style-bold" style="font-weight: bold; color: gray;">@Model.home.address</span>
                         </div>
                     </div>
 
                     <div style="margin-top: 20px;">
-                        Times City với địa thế giao thông thuận lợi không nằm quá xa trung tâm. Chỉ mất 15 phút để di chuyển đến Hồ Gươm và 30 phút đi đến sân bay Nội Bài.
-                        <br />
-                        <br />
-                        Tòa chung cư được bao phủ bởi một màu xanh của cây cỏ. Lối kiến trúc độc đáo với đồi Vọng Cảnh, quảng trường Times Square…
-                        <br />
-                        <br />
-                        - Đây là Ngôi nhà thông minh hàng đầu với thiết kế nội thất nổi bật tại Hà Nội với cuộc sống cao cấp mà bạn không thể tìm thấy ở bất kỳ nơi nào khác
-                        <br />
-                        <br />
-                        - Đầy đủ các trang thiết bị tiện nghi, hiện đại bậc nhất để bạn được nghỉ ngơi thoải mái
-                        <br />
-                        <br />
-                        - Được thiết kế theo phong cách hiện đại bậc nhất hiện nay.
+                        @MvcHtmlString.Create(Model.home.detail_description.Replace(Environment.NewLine, "<br />"))
                     </div>
 
 
@@ -106,7 +92,28 @@
                     <div class="card" style="width: 18rem; height: 260px">
                         <div class="card-body">
                             <form action="" method="post">
-                                <p class="price_and_address" style="padding-left: 15px; padding-top: 5px; margin-bottom: 5px;">1,200,000đ/đêm </p>
+                                @{
+                                    int price = Model.home.price;
+                                    int million = price / 1000000;
+                                    int hundred = price % 1000000 / 1000;
+
+                                    if (million > 0)
+                                    {
+                                        if (hundred > 0)
+                                        {
+                                            <p class="price_and_address" style="padding-left: 15px; padding-top: 5px; margin-bottom: 5px;">@million,@hundred,000đ/đêm</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="price_and_address" style="padding-left: 15px; padding-top: 5px; margin-bottom: 5px;">@million,000,000đ/đêm</p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p class="price_and_address" style="padding-left: 15px; padding-top: 5px; margin-bottom: 5px;">@hundred,000đ/đêm</p>
+                                    }
+                                }
+
                                 <label for="exampleInputPassword1" style="font-weight: bold; font-size: small; color: gray;">Từ Ngày</label>
                                 <input type="date" class="form-control" id="exampleInputPassword1" style="margin-bottom: 5px;" name="date-checkIn" />
                                 <label for="exampleInputPassword1" style="font-weight: bold; font-size: small; color: gray;">Đến Ngày</label>
