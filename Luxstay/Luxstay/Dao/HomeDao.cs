@@ -10,15 +10,11 @@ namespace Luxstay.Dao
 {
     public class HomeDao
     {
-        DataProvide dataProvide = new DataProvide();
-        SqlConnection cnn; //Ket noi DB
-        SqlDataAdapter da; //Xu ly cac cau lenh sql: select
-        SqlCommand cmd; //Thuc thi cau lenh insert update
+        DataProvider dataProvider = new DataProvider();
 
         // Get all home in database
         public List<Home> findAll(int pageIndex, int pageSize)
         {
-            connect(); // connect with DB
             List<Home> homes = new List<Home>();
             int first = (pageIndex * pageSize) - (pageSize - 1);
             int max = pageIndex * pageSize;
@@ -27,9 +23,7 @@ namespace Luxstay.Dao
                             + "AS rownum, * from Home h) tbl "
                             + "JOIN Place p ON tbl.place_id = p.place_id "
                             + "WHERE rownum BETWEEN " + first + " and " + max;
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+            DataTable dataTable = dataProvider.excuteQuery(query);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 Home home = new Home();
@@ -58,18 +52,14 @@ namespace Luxstay.Dao
         // Count all of home in database
         public int count()
         {
-            connect(); // connect with DB
             String query = "SELECT COUNT(*) AS [total_home] FROM Home";
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+            DataTable dataTable = dataProvider.excuteQuery(query);
             return Int32.Parse(dataTable.Rows[0]["total_home"].ToString());
         }
 
         // Get all home by place id in database and pagging
         public List<Home> findAllByPlaceId(string place_id, int pageIndex, int pageSize)
         {
-            connect(); // connect with DB
             List<Home> homes = new List<Home>();
             int first = (pageIndex * pageSize) - (pageSize - 1);
             int max = pageIndex * pageSize;
@@ -78,9 +68,7 @@ namespace Luxstay.Dao
                           + "AS rownum, * from Home h WHERE h.place_id = '" + place_id + "') tbl "
                           + "JOIN Place p ON tbl.place_id = p.place_id "
                           + "WHERE rownum BETWEEN " + first + " and " + max;
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+            DataTable dataTable = dataProvider.excuteQuery(query);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 Home home = new Home();
@@ -107,17 +95,14 @@ namespace Luxstay.Dao
         }
 
         // Display information of home by id
-        public Home findById(string home_id)
+        public Home findById(int home_id)
         {
-            connect(); // connect with DB
             // query select home from table Home in data base by home_id
             String query = "Select * from Home h "
                         + "join Place p "
                         + "on h.place_id = p.place_id "
-                        + "where h.home_id = '" + home_id + "'"; ;
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+                        + "where h.home_id = " + home_id;;
+            DataTable dataTable = dataProvider.excuteQuery(query);
             Home home = new Home();
             home.home_id = Int32.Parse(dataTable.Rows[0]["home_id"].ToString());
             home.home_name = dataTable.Rows[0]["home_name"].ToString();
@@ -128,6 +113,7 @@ namespace Luxstay.Dao
             home.address = dataTable.Rows[0]["address"].ToString();
             home.short_description = dataTable.Rows[0]["short_description"].ToString();
             home.detail_description = dataTable.Rows[0]["detail_description"].ToString();
+
 
             Place place = new Place();
             place.place_id = dataTable.Rows[0]["place_id"].ToString();
@@ -142,31 +128,10 @@ namespace Luxstay.Dao
         // Count all of home in database by place_id
         public int countByPlace(string place_id)
         {
-            connect(); // connect with DB
             String query = "SELECT COUNT(*) AS [total_home] FROM Home "
                         + "WHERE place_id = '" + place_id + "'";
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+            DataTable dataTable = dataProvider.excuteQuery(query);
             return Int32.Parse(dataTable.Rows[0]["total_home"].ToString());
-        }
-        public void connect()
-        {
-            try
-            {
-                String strCnn = "Data Source=localhost;Initial Catalog=Luxstay;Integrated Security=True";
-                /*                string strCnn = ConfigurationManager.ConnectionStrings["DBContext"].ConnectionString;*/
-                cnn = new SqlConnection(strCnn);
-                if (cnn.State == ConnectionState.Open)
-                {
-                    cnn.Close();
-                }
-                cnn.Open();
-                Console.WriteLine("Connect success !");
-            }
-            catch (Exception ex)
-            {
-            }
         }
     }
 }

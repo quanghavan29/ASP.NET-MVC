@@ -10,39 +10,15 @@ namespace Luxstay.Dao
 {
     public class ImagesDetailDao
     {
-        DataProvide dataProvide = new DataProvide();
-        SqlConnection cnn; //Ket noi DB
-        SqlDataAdapter da; //Xu ly cac cau lenh sql: select
-        SqlCommand cmd; //Thuc thi cau lenh insert update
-        public void connect()
-        {
-            try
-            {
-                String strCnn = "Data Source=localhost;Initial Catalog=Luxstay;Integrated Security=True";
-                /*                string strCnn = ConfigurationManager.ConnectionStrings["DBContext"].ConnectionString;*/
-                cnn = new SqlConnection(strCnn);
-                if (cnn.State == ConnectionState.Open)
-                {
-                    cnn.Close();
-                }
-                cnn.Open();
-                Console.WriteLine("Connect success !");
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
+        DataProvider dataProvider = new DataProvider();
+       
         // get all images from table images_detail by home_id
-        public List<ImagesDetail> findAllByHomeId(string home_id)
+        public List<ImagesDetail> findAllByHomeId(int home_id)
         {
-            connect();
             List<ImagesDetail> imagesDetails = new List<ImagesDetail>();
             String query = "SELECT * FROM Images_Detail "
-                        + "WHERE home_id = '" + home_id + "'";
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+                        + "WHERE home_id = " + home_id;
+            DataTable dataTable = dataProvider.excuteQuery(query);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 ImagesDetail imagesDetail = new ImagesDetail();

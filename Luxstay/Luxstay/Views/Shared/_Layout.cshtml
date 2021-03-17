@@ -34,8 +34,19 @@
             <a href="">Host</a>
             @if (Session["user"] != null)
             {
-                @Html.ActionLink("Xin Chào " + Session["lastName"], "Profile")
-                @Html.ActionLink("Đăng xuất", "../Logout")
+                <!-- Example single danger button -->
+                <div class="btn-group" style="margin-top: -5px;">
+                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Xin chào @Session["lastName"]
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li style="margin-left: -5px;">@Html.ActionLink("Cài đặt tài khoản", "../Profile")</li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li style="margin-left: -5px;">@Html.ActionLink("Đặt chỗ của tôi", "../Booking/HistoryBooking")</li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li style="margin-left: -5px;">@Html.ActionLink("Đăng xuất", "../Logout")</li>
+                    </ul>
+                </div>
             }
             else
             {
@@ -54,7 +65,8 @@
             <p>&copy; quanghavan29@gmail.com - Spring @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

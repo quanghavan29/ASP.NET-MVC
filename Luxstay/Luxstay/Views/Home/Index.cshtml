@@ -59,11 +59,18 @@
 
     <section class="greeting__wrap__section" style="padding-top: 5px;">
         <div class="container">
-            <h4 class="greeting__wrapper">Chào mừng đến với Luxstay!</h4>
-            <p class="greeting__text__wrapper">
-                @Html.ActionLink("Đăng nhập", "Login", "Admin") hoặc @Html.ActionLink("Đăng ký", "Register", "Admin") để trải nghiệm !
-            </p>
-        </div>
+            <h4 class="greeting__wrapper">Chào mừng đến với Luxstay! @Session["lastName"]</h4>
+            @if (Session["user"] == null)
+            {
+                <p class="greeting__text__wrapper">
+                    @Html.ActionLink("Đăng nhập", "../Login") hoặc @Html.ActionLink("Đăng ký", "../Register") để trải nghiệm !
+                </p>
+            }
+            else
+            {
+                <p class="greeting__text__wrapper">Cùng trải nghiệm nhiều hơn nữa trên Luxstay</p>
+                    }
+            </div>
     </section>
 
     <section>
@@ -144,17 +151,18 @@
         </div>
         <!-- PAGGING -->
         <nav aria-label="Page navigation example">
-            @{ 
+            @{
                 int currentPage = ViewBag.pageIndex;
             }
             <ul class="pagination justify-content-center">
-                @if (currentPage > 1) {
-                        int previous = currentPage - 1;
-                <li class="page-item">
-                    <a class="page-link" href="../Home?pageIndex=@previous" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
+                @if (currentPage > 1)
+                {
+                    int previous = currentPage - 1;
+                    <li class="page-item">
+                        <a class="page-link" href="../Home?pageIndex=@previous" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
                 }
                 @for (int i = 1; i <= ViewBag.totalPage; i++)
                 {
@@ -170,8 +178,8 @@
                     </li>
                 }
                 @if (currentPage < ViewBag.totalPage)
-                    {
-                        int next = currentPage + 1;
+                {
+                    int next = currentPage + 1;
                     <li class="page-item">
                         <a class="page-link" href="../Home?pageIndex=@next" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>

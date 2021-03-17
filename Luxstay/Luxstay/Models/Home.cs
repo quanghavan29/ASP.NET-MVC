@@ -26,5 +26,7 @@ namespace Luxstay.Models
         public string short_description { get; set; }
         
         public string detail_description { get; set; }
+
+        public int status { get; set; }
     }
 }

@@ -115,19 +115,27 @@
                                     }
                                 }
 
-                                <label for="exampleInputPassword1" style="font-weight: bold; font-size: small; color: gray;">Từ Ngày</label>
-                                <input type="date" class="form-control" id="exampleInputPassword1" style="margin-bottom: 5px;" name="date-checkIn" />
-                                <label for="exampleInputPassword1" style="font-weight: bold; font-size: small; color: gray;">Đến Ngày</label>
-                                <input type="date" class="form-control" id="exampleInputPassword1" style="margin-bottom: 5px;" name="date-checkOut" />
-                                <input type="text" class="form-control" id="exampleInputPassword1" style="display: none" name="id" value="${room.getId()}" />
+                                <label style="font-weight: bold; font-size: small; color: gray;">Từ Ngày</label>
+                                <input type="date" class="form-control" style="margin-bottom: 5px;" name="dateCheckIn" required />
+                                <label style="font-weight: bold; font-size: small; color: gray;">Đến Ngày</label>
+                                <input type="date" class="form-control" style="margin-bottom: 5px;" name="dateCheckOut" required />
+                                <input type="text" class="form-control" style="display: none" name="home_id" value="@Model.home.home_id" />
                                 @*                                <span style="color: green;">Đặt phòng thành công!</span>*@
-                                @if (Session["user"] == null)
+
+                                @if (Model.home.status == 1)
                                 {
-                                    <a href="../Login" class="btn " style="background-color: #f65e38; color: white; margin-top: 15px;">Đăng nhập để đặt phòng</a>
+                                    <p style="color: red; font-weight: bold; margin-top: 10px; font-size: 15px;">Trạng thái: Đã có khách đặt!</p>
                                 }
                                 else
                                 {
-                                    <input type="submit" class="btn " style="background-color: #f65e38; color: white; margin-top: 15px;" value="Đặt Phòng" />
+                                    if (Session["user"] == null)
+                                    {
+                                        <a href="../Login" class="btn " style="background-color: #f65e38; color: white; margin-top: 15px;">Đăng nhập để đặt phòng</a>
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" class="btn " style="background-color: #f65e38; color: white; margin-top: 15px;" value="Đặt Phòng" />
+                                    }
                                 }
                             </form>
                         </div>

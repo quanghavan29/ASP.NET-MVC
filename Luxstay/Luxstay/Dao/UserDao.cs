@@ -10,39 +10,14 @@ namespace Luxstay.Dao
 {
     public class UserDao
     {
-        SqlConnection cnn; //Ket noi DB
-        SqlDataAdapter da; //Xu ly cac cau lenh sql: select
-        SqlCommand cmd; //Thuc thi cau lenh insert update
-
-        public void connect()
-        {
-            try
-            {
-                String strCnn = "Data Source=localhost;Initial Catalog=Luxstay;Integrated Security=True";
-                /*                string strCnn = ConfigurationManager.ConnectionStrings["DBContext"].ConnectionString;*/
-                cnn = new SqlConnection(strCnn);
-                if (cnn.State == ConnectionState.Open)
-                {
-                    cnn.Close();
-                }
-                cnn.Open();
-                Console.WriteLine("Connect success !");
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
+        DataProvider dataProvider = new DataProvider();
         public User findByEmailAndPassword(string email, string password)
         {
-            connect();
             String query = "SELECT * FROM [User] "
                         + "WHERE email = '" + email + "' and password = '" + password + "'";
-            da = new SqlDataAdapter(query, cnn);
             try
             {
-                DataTable dataTable = new DataTable();
-                da.Fill(dataTable);
+                DataTable dataTable = dataProvider.excuteQuery(query);
                 User user = new User();
                 user.user_id = Int32.Parse(dataTable.Rows[0]["user_id"].ToString());
                 user.email = dataTable.Rows[0]["email"].ToString();
@@ -63,14 +38,11 @@ namespace Luxstay.Dao
 
         public User findByEmail(string email)
         {
-            connect();
             String query = "SELECT * FROM [User] "
                         + "WHERE email = '" + email + "'";
-            da = new SqlDataAdapter(query, cnn);
             try
             {
-                DataTable dataTable = new DataTable();
-                da.Fill(dataTable);
+                DataTable dataTable = dataProvider.excuteQuery(query);
                 User user = new User();
                 user.user_id = Int32.Parse(dataTable.Rows[0]["user_id"].ToString());
                 user.email = dataTable.Rows[0]["email"].ToString();
@@ -96,10 +68,7 @@ namespace Luxstay.Dao
                 String query = "INSERT INTO [User] "
                 + "VALUES('" + user.email + "', '" + user.phone + "', N'" + user.name 
                 + "', '" + user.password + "', 1, '', 'ROLE_USER', 1)";
-                cmd = cnn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = query;
-                cmd.ExecuteNonQuery();
+                dataProvider.ExcuteNonQuery(query);
             }
             catch (Exception ex)
             {

@@ -10,19 +10,14 @@ namespace Luxstay.Dao
 {
     public class PlaceDao
     {
-        SqlConnection cnn; //Ket noi DB
-        SqlDataAdapter da; //Xu ly cac cau lenh sql: select
-        SqlCommand cmd; //Thuc thi cau lenh insert update
+        DataProvider dataProvider = new DataProvider();
 
         // Get all place in database
         public List<Place> findAll()
         {
-            connect();
             List<Place> places = new List<Place>();
             String query = "Select * from Place";
-            da = new SqlDataAdapter(query, cnn);
-            DataTable dataTable = new DataTable();
-            da.Fill(dataTable);
+            DataTable dataTable = dataProvider.excuteQuery(query);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 Place place = new Place();
@@ -33,25 +28,6 @@ namespace Luxstay.Dao
                 places.Add(place);
             }
             return places;
-        }
-
-        public void connect()
-        {
-            try
-            {
-                String strCnn = "Data Source=localhost;Initial Catalog=Luxstay;Integrated Security=True";
-                /*                string strCnn = ConfigurationManager.ConnectionStrings["DBContext"].ConnectionString;*/
-                cnn = new SqlConnection(strCnn);
-                if (cnn.State == ConnectionState.Open)
-                {
-                    cnn.Close();
-                }
-                cnn.Open();
-                Console.WriteLine("Connect success !");
-            }
-            catch (Exception ex)
-            {
-            }
         }
     }
 }
