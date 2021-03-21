@@ -129,8 +129,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ManagerHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomestayController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerAccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerHomestayController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RestoreController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -189,8 +193,14 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ManagerHome\InsertHome.cshtml" />
-    <Content Include="Areas\Admin\Views\ManagerHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Homestay\InsertHome.cshtml" />
+    <Content Include="Areas\Admin\Views\Homestay\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerHomestay\InsertHomestay.cshtml" />
+    <Content Include="Areas\Admin\Views\Homestay\UpdateHome.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\InsertAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\UpdateAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\Restore\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -225,6 +235,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\ManagerAccount\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

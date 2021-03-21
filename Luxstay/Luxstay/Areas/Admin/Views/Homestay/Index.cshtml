@@ -12,7 +12,7 @@
 
 <body>
     <span style="margin-top: 10px; font-size: 20px;">Quản Lí Homestay</span>
-    <span style="margin-left: 850px;"><a href="ManagerHome/InsertHome" type="button" class="btn btn-info" style="padding: 2px 7px 2px 7px;">Thêm Mới</a></span>
+    <span style="margin-left: 850px;"><a href="Homestay/InsertHome" type="button" class="btn btn-info" style="padding: 2px 7px 2px 7px;">Thêm Mới</a></span>
     <section style="margin-top: 20px">
         <div class="container">
             <table class="table" style="font-size: 12px;">
@@ -47,26 +47,30 @@
                                         {
                                             if (hundred > 0)
                                             {
-                                                <p class="price_and_address">@million,@hundred,000đ/đêm</p>
+                                                <span class="price_and_address">@million,@hundred,000đ/đêm</span>
                                             }
                                             else
                                             {
-                                                <p class="price_and_address">@million,000,000đ/đêm</p>
+                                                <span class="price_and_address">@million,000,000đ/đêm</span>
                                             }
                                         }
                                         else
                                         {
-                                            <p class="price_and_address">@hundred,000đ/đêm</p>
+                                            <span class="price_and_address">@hundred,000đ/đêm</span>
                                         }
                                     }
 
                                 </th>
                                 <th style="vertical-align: middle;">@home.room_number phòng ngủ</th>
-                                <th style="vertical-align: middle;">Phòng riêng · 1 Phòng tắm...</th>
-                                <th style="vertical-align: middle;">·Vị trí rất đẹp và thuận tiện...</th>
                                 <th style="vertical-align: middle;">
-                                    <a href="" type="button" class="btn btn-warning" style="padding: 2px 7px 2px 7px;">Sửa</a>
-                                    <a href="" type="button" class="btn btn-danger" style="padding: 2px 7px 2px 7px;">Xóa</a>
+                                    <span style="display: inline-block; width: 180px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis;">@home.short_description</span>
+                                </th>
+                                <th style="vertical-align: middle;">
+                                    <span style="display: inline-block; width: 180px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis;">@home.detail_description</span>
+                                </th>
+                                <th style="vertical-align: middle;">
+                                    <a href="Homestay/UpdateHome?home_id=@home.home_id" type="button" class="btn btn-warning" style="padding: 2px 7px 2px 7px;">Sửa</a>
+                                    <a href="../ManagerHomestay/DeleteHomestay?home_id=@home.home_id" type="button" class="btn btn-danger" style="padding: 2px 7px 2px 7px;">Xóa</a>
                                 </th>
                             </tr>
                         }
@@ -84,7 +88,7 @@
                 {
                     int previous = currentPage - 1;
                     <li class="page-item">
-                        <a class="page-link" href="../../Admin/ManagerHome?pageIndex=@previous" aria-label="Previous">
+                        <a class="page-link" href="Homestay?pageIndex=@previous" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -99,14 +103,14 @@
                                 active += "active";
                             }
                         }
-                        <a class="page-link @active" href="../../Admin/ManagerHome?pageIndex=@i">@i</a>
+                        <a class="page-link @active" href="Homestay?pageIndex=@i">@i</a>
                     </li>
                 }
                 @if (currentPage < ViewBag.totalPage)
                 {
                     int next = currentPage + 1;
                     <li class="page-item">
-                        <a class="page-link" href="../../Admin/ManagerHome?pageIndex=@next" aria-label="Next">
+                        <a class="page-link" href="Homestay?pageIndex=@next" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

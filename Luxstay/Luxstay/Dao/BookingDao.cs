@@ -101,5 +101,17 @@ namespace Luxstay.Dao
             }
         }
 
+        public void clear(int home_id)
+        {
+            try
+            {
+                string query = "Delete from Booking Where home_id = " + home_id;
+                dataProvider.ExcuteNonQuery(query);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi insert user: " + ex.Message);
+            }
+        }
     }
 }

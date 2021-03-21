@@ -1,4 +1,4 @@
-﻿
+﻿@model dynamic
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -19,37 +19,38 @@
 </head>
 
 <body>
-    <h3 style="text-align: center;">Thêm Homestay Mới</h3>
+    <h3 style="text-align: center;">Update Homestay</h3>
     <section style="padding-top: 20px">
         <div class="container">
 
-            <form action="adminAddNewHomestay" method="post">
+            <form action="../../ManagerHomestay/InsertHomestay" method="post">
                 <div class="row">
                     <div class="col-lg-4">
 
                         <div class="form-group col">
-                            <label for="exampleInputEmail1">Ảnh (Imgae URL)</label>
-                            <input type="text" class="form-control" name="imageRoom" aria-describedby="emailHelp" required />
+                            <label>Ảnh (Imgae URL)</label>
+                            <input type="text" class="form-control" name="image_intro" required value="@Model.home.image_intro" />
                         </div>
 
                         <div class="form-group col">
                             <label>Tên Homestay</label>
-                            <input type="text" class="form-control" name="roomName" required />
+                            <input type="text" class="form-control" name="home_name" required value="@Model.home.home_name" />
                         </div>
 
                         <div class="form-group col">
                             <label>Địa điểm</label><br />
-                            <select style="padding-right: 60px; font-size: 18px; padding-top: 5px; padding-bottom: 5px; border-radius: 3px; border-color: darkgrey;">
-                                <option>Thành Phố Đà Nẵng</option>
-                                <option>Thành Phố Hà Nội</option>
-                                <option>Thành Phố Nha Trang</option>
-                                <option>Thành Phố Hồ Chí Minh</option>
+                            <select name="place" style="padding-right: 60px; font-size: 18px; padding-top: 5px; padding-bottom: 5px; border-radius: 3px; border-color: darkgrey;">
+
+                                <option value="DN">Thành Phố Đà Nẵng</option>
+                                <option value="HN">Thành Phố Hà Nội</option>
+                                <option value="NT">Thành Phố Nha Trang</option>
+                                <option value="SG">Thành Phố Hồ Chí Minh</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Miêu tả ngắn</label>
-                            <input type="text" class="form-control" name="descriptions" required />
+                            <input type="text" class="form-control" name="short_description" required value="@Model.home.short_description" />
                         </div>
 
                     </div>
@@ -58,47 +59,46 @@
 
                         <div class="form-group col">
                             <label>Giá phòng / đêm - đơn vị: (VNĐ)</label>
-                            <input type="text" class="form-control" name="price" required placeholder="ví dụ: 1,000,000" />
+                            <input type="text" class="form-control" name="price" required placeholder="ví dụ: 1,000,000" value="@Model.home.price" />
                         </div>
                         <div class="form-group col">
                             <label>Số phòng ngủ</label>
-                            <input type="text" class="form-control" name="quantityBed" required />
+                            <input type="text" class="form-control" name="room_number" required value="@Model.home.room_number" />
                         </div>
                         <div class="form-group col">
                             <label>Loại hình cho thuê</label><br />
-                            <select style="padding-right: 135px; font-size: 18px; padding-top: 5px; padding-bottom: 5px; border-radius: 3px; border-color: darkgrey;">
-                                <option>Căn hộ dịch vụ</option>
-                                <option>Chung cư</option>
-                                <option>Homestay</option>
-                                <option>Studio</option>
-                                <option>Biệt thự</option>
+                            <select name="home_type" style="padding-right: 135px; font-size: 18px; padding-top: 5px; padding-bottom: 5px; border-radius: 3px; border-color: darkgrey;">
+                                <option value="canho">Căn hộ dịch vụ</option>
+                                <option value="chungcu">Chung cư</option>
+                                <option value="homestay">Homestay</option>
+                                <option value="studio">Studio</option>
+                                <option value="bietthu">Biệt thự</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Miêu tả chi tiết</label>
-                            <input type="text" class="form-control" name="descriptions" required />
+                            <input type="text" class="form-control" name="detail_description" required value="@Model.home.detail_description" />
                         </div>
 
                     </div>
 
                     <div>
 
-                        <div class="form-group">
-                            <label>Ảnh miêu tả 1 (Imgae URL)</label>
-                            <input type="text" class="form-control" name="detailImageRoom1" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Ảnh miêu tả 2 (Imgae URL)</label>
-                            <input type="text" class="form-control" name="detailImageRoom2" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Ảnh miêu tả 3 (Imgae URL)</label>
-                            <input type="text" class="form-control" name="detailImageRoom3" required />
-                        </div>
+                        @foreach (var image in Model.imagesDetails)
+                        {
+                            int i = 0;
+                            i++;
+                            <div class="form-group">
+                                <label>Ảnh miêu tả i (Imgae URL)</label>
+                                <input type="text" class="form-control" name="image_@i" required value="@image.image_url" />
+                            </div>
+                        }
+
+
                         <div class="form-group">
                             <label>Địa chỉ cụ thể</label>
-                            <input type="text" class="form-control" name="detailImageRoom3" required />
+                            <input type="text" class="form-control" name="address" required value="@Model.home.address" />
                         </div>
 
                     </div>
@@ -106,10 +106,10 @@
                 <div style="text-align: center;">
                     <input type="text" class="form-control" name="id" style="display: none" />
                     <br />
-                    <button type="submit" class="btn btn-success" style="margin-top: 2px;">Add ( Thêm Mới )</button>
+                    <button type="submit" class="btn btn-success" style="margin-top: 2px;">Update ( Cập Nhật )</button>
                 </div>
             </form>
-            <br/>
+            <br />
         </div>
 
     </section>

@@ -2,15 +2,16 @@
 using Luxstay.Models;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Luxstay.Areas.Admin.Controllers
 {
-    public class ManagerHomeController : Controller
+    public class HomestayController : Controller
     {
-        // GET: Admin/ManagerHome
+        // GET: Admin/Homestay
         public ActionResult Index()
         {
             HomeDao homeDao = new HomeDao();
@@ -46,11 +47,27 @@ namespace Luxstay.Areas.Admin.Controllers
             return View();
         }
 
-        // GET: Admin/ManagerHome
-        
         public ActionResult InsertHome()
         {
             return View();
+        }
+
+        public ActionResult UpdateHome()
+        {
+            int home_id = Int32.Parse(Request.QueryString["home_id"]);
+            HomeDao homeDao = new HomeDao();
+            Home home = homeDao.findById(home_id);
+            ImagesDetailDao imagesDetailDao = new ImagesDetailDao();
+
+            // Display all images detail of home by home_id
+            List<ImagesDetail> imagesDetails = new List<ImagesDetail>();
+            imagesDetails = imagesDetailDao.findAllByHomeId(home_id);
+            // using dynamic to response models to view (multiple models)
+            dynamic dy = new ExpandoObject();
+            dy.home = home;
+            dy.imagesDetails = imagesDetails;
+
+            return View(dy);
         }
     }
 }

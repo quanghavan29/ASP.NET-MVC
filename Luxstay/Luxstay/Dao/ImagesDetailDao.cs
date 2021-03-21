@@ -29,5 +29,32 @@ namespace Luxstay.Dao
             }
             return imagesDetails;
         }
+
+        public void insert(int home_id, string image_url)
+        {
+            try
+            {
+                string query = "insert into Images_Detail "
+                    + "values(" + home_id + ", '" + image_url + "')";
+                dataProvider.ExcuteNonQuery(query);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi insert user: " + ex.Message);
+            }
+        }
+
+        public void clear(int home_id)
+        {
+            try
+            {
+                string query = "Delete from Images_Detail Where home_id = " + home_id;
+                dataProvider.ExcuteNonQuery(query);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi insert user: " + ex.Message);
+            }
+        }
     }
 }

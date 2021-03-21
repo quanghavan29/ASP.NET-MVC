@@ -29,5 +29,29 @@ namespace Luxstay.Dao
             }
             return places;
         }
+
+        public int totalHomestayByPlace(string place_id)
+        {
+            int total_homestay = 0;
+            String query = "Select p.total_home from Place p "
+                            + "where place_id = '" + place_id + "'";
+            DataTable dataTable = dataProvider.excuteQuery(query);
+            total_homestay = Int32.Parse(dataTable.Rows[0]["total_home"].ToString());
+            return total_homestay;
+        }
+
+        public void updateTotalHomestay(int totalHomestay, string place_id)
+        {
+            try
+            {
+                string query = "Update Place set total_home = " + totalHomestay
+                            + " where place_id = '" + place_id + "'";
+                dataProvider.ExcuteNonQuery(query);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi insert user: " + ex.Message);
+            }
+        }
     }
 }
