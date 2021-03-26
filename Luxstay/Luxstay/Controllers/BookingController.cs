@@ -11,16 +11,6 @@ namespace Luxstay.Controllers
     public class BookingController : Controller
     {
 
-        public ActionResult HistoryBooking()
-        {
-            User user = (User)Session["user"];
-            int user_id = user.user_id;
-            BookingDao bookingDao = new BookingDao();
-            List<Booking> bookings = bookingDao.findAllBookingByUserId(user_id);
-            ViewBag.bookings = bookings;
-            return View();
-        }
-
         // POST: Booking
         [HttpPost]
         public ActionResult Index()
@@ -63,7 +53,7 @@ namespace Luxstay.Controllers
                             int total_day_number = TimeCheckOut.Days;
                             int total_price = total_day_number * home.price;
                             bookingDao.insert(user.user_id, home.home_id, date_check_in, date_check_out, total_price);
-                            return RedirectToAction("HistoryBooking", "Booking/HistoryBooking");
+                            return RedirectToAction("Index", "HistoryBooking");
                         }
                     }
                 }

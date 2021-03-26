@@ -46,14 +46,15 @@ namespace Luxstay.Controllers
                 // Then check password do macth
                 if (user.password.Equals(repassword)) // if password == repasssword
                 {
-                    // Condition to create account is valid
-                    userDao.insert(user); // => insert account to database
-                    // Return view login and set email, password in view login = email, password registed
-                    Session["register"] = "register";
-                    // Display notification "Register successfully!" for client
-                    Session["registerSuccess"] = "Đăng ký tài khoản thành công! Đăng nhập ngay.";
-                    Session.Remove("loginFail");
-                    return RedirectToAction("Index", "Login");
+                    // Send mail to verify
+                    SendMailDao sendMailDao = new SendMailDao();
+                    string code_verify = sendMailDao.randomCode(4);
+                    Session["code_verify"] = code_verify;
+                    string subject = "Xác thực địa chỉ email!";
+                    string content = "Cảm ơn bạn đã đăng ký sử dụng dịch vụ của Luxstay! Mã xác thực của bạn là: " + code_verify;
+                    sendMailDao.SendMail("quanghavan29@gmail.com", subject, content);
+
+                    return View();
                 }
                 else // else if password do not match (password != repassword)
                 {

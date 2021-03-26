@@ -23,7 +23,7 @@
     <section style="padding-top: 20px">
         <div class="container">
 
-            <form action="../../ManagerHomestay/InsertHomestay" method="post">
+            <form action="../../ManagerHomestay/UpdateHomestay" method="post">
                 <div class="row">
                     <div class="col-lg-4">
 
@@ -41,10 +41,10 @@
                             <label>Địa điểm</label><br />
                             <select name="place" style="padding-right: 60px; font-size: 18px; padding-top: 5px; padding-bottom: 5px; border-radius: 3px; border-color: darkgrey;">
 
-                                <option value="DN">Thành Phố Đà Nẵng</option>
-                                <option value="HN">Thành Phố Hà Nội</option>
-                                <option value="NT">Thành Phố Nha Trang</option>
-                                <option value="SG">Thành Phố Hồ Chí Minh</option>
+                                <option id="DN" value="DN">Thành Phố Đà Nẵng</option>
+                                <option id="HN" value="HN">Thành Phố Hà Nội</option>
+                                <option id="NT" value="NT">Thành Phố Nha Trang</option>
+                                <option id="SG" value="SG">Thành Phố Hồ Chí Minh</option>
                             </select>
                         </div>
 
@@ -68,11 +68,11 @@
                         <div class="form-group col">
                             <label>Loại hình cho thuê</label><br />
                             <select name="home_type" style="padding-right: 135px; font-size: 18px; padding-top: 5px; padding-bottom: 5px; border-radius: 3px; border-color: darkgrey;">
-                                <option value="canho">Căn hộ dịch vụ</option>
-                                <option value="chungcu">Chung cư</option>
-                                <option value="homestay">Homestay</option>
-                                <option value="studio">Studio</option>
-                                <option value="bietthu">Biệt thự</option>
+                                <option id="canho" value="canho">Căn hộ dịch vụ</option>
+                                <option id="chungcu" value="chungcu">Chung cư</option>
+                                <option id="homestay" value="homestay">Homestay</option>
+                                <option id="studio" value="studio">Studio</option>
+                                <option id="bietthu" value="bietthu">Biệt thự</option>
                             </select>
                         </div>
 
@@ -84,13 +84,15 @@
                     </div>
 
                     <div>
+                        @{
+                            int i = 0;
+                        }
 
                         @foreach (var image in Model.imagesDetails)
                         {
-                            int i = 0;
                             i++;
                             <div class="form-group">
-                                <label>Ảnh miêu tả i (Imgae URL)</label>
+                                <label>Ảnh miêu tả @i (Imgae URL)</label>
                                 <input type="text" class="form-control" name="image_@i" required value="@image.image_url" />
                             </div>
                         }
@@ -104,7 +106,7 @@
                     </div>
                 </div>
                 <div style="text-align: center;">
-                    <input type="text" class="form-control" name="id" style="display: none" />
+                    <input type="text" class="form-control" name="home_id" style="display: none" value="@Model.home.home_id"/>
                     <br />
                     <button type="submit" class="btn btn-success" style="margin-top: 2px;">Update ( Cập Nhật )</button>
                 </div>
@@ -114,6 +116,12 @@
 
     </section>
 
+    <script>
+        let place = "@Model.home.place.place_id";
+        document.getElementById(place).setAttribute("selected", "selected");
+        let home_type = "@ViewBag.home_type";
+        document.getElementById(home_type).setAttribute("selected", "selected");
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

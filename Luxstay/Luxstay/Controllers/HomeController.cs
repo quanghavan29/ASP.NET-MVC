@@ -17,6 +17,7 @@ namespace Luxstay.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            SendMailDao sendMailDao = new SendMailDao();
             HomeDao homeDao = new HomeDao();
             PlaceDao placeDao = new PlaceDao();
 

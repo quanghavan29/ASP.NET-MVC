@@ -133,21 +133,27 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomestayController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerAccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerBookingController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerHomestayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RestoreController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CancelBookingController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HistoryBookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\VerifyAccountController.cs" />
     <Compile Include="Dao\BookingDao.cs" />
     <Compile Include="Dao\DataProvider.cs" />
     <Compile Include="Dao\HomeDao.cs" />
     <Compile Include="Dao\ImagesDetailDao.cs" />
     <Compile Include="Dao\PlaceDao.cs" />
+    <Compile Include="Dao\SendMailDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,8 +169,10 @@
     <Content Include="Assets\css\admin.css" />
     <Content Include="Assets\css\authen.css" />
     <Content Include="Assets\css\header.css" />
+    <Content Include="Assets\css\infohome.css" />
     <Content Include="Assets\css\paging.css" />
     <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\css\verify.css" />
     <Content Include="Assets\images\background_intro_1.png" />
     <Content Include="Assets\images\background_intro_2.png" />
     <Content Include="Assets\images\background_intro_3.png" />
@@ -201,6 +209,7 @@
     <Content Include="Areas\Admin\Views\Account\InsertAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Account\UpdateAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Restore\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerBooking\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -229,13 +238,19 @@
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\Booking\HistoryBooking.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Register\Verify.cshtml" />
+    <Content Include="Views\VerifyAccount\Index.cshtml" />
+    <Content Include="Views\VerifyAccount\ResendMail.cshtml" />
+    <Content Include="Views\HistoryBooking\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\ManagerAccount\" />
+    <Folder Include="Views\CancelBooking\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

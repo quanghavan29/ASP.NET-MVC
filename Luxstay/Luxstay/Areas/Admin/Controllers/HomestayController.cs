@@ -43,6 +43,7 @@ namespace Luxstay.Areas.Admin.Controllers
             // Display pageIndex to active page current
             ViewData["pageIndex"] = pageIndex;
             List<Home> homes = homeDao.findAll(pageIndex, pageSize);
+            // Display list all homestay in database to index page of (Manager Homestay) and pagging
             ViewBag.homes = homes;
             return View();
         }
@@ -57,6 +58,10 @@ namespace Luxstay.Areas.Admin.Controllers
             int home_id = Int32.Parse(Request.QueryString["home_id"]);
             HomeDao homeDao = new HomeDao();
             Home home = homeDao.findById(home_id);
+            home.detail_description = home.detail_description.Replace("<br/><br/>", "break");
+            home.detail_description = home.detail_description.Replace("<br /><br />", "break");
+            home.detail_description = home.detail_description.Replace("<br/>", "break");
+            home.detail_description = home.detail_description.Replace("<br />", "break");
             ImagesDetailDao imagesDetailDao = new ImagesDetailDao();
 
             // Display all images detail of home by home_id
@@ -66,6 +71,28 @@ namespace Luxstay.Areas.Admin.Controllers
             dynamic dy = new ExpandoObject();
             dy.home = home;
             dy.imagesDetails = imagesDetails;
+
+            // Check value of home type
+            if (home.home_type.Equals("Căn hộ dịch vụ"))
+            {
+                ViewBag.home_type = "canho";
+            }
+            else if (home.home_type.Equals("Chung cư"))
+            {
+                ViewBag.home_type = "chungcu";
+            }
+            else if (home.home_type.Equals("Homestay"))
+            {
+                ViewBag.home_type = "homestay";
+            }
+            else if (home.home_type.Equals("Studio"))
+            {
+                ViewBag.home_type = "studio";
+            }
+            else if (home.home_type.Equals("Biệt thự"))
+            {
+                ViewBag.home_type = "bietthu";
+            }
 
             return View(dy);
         }

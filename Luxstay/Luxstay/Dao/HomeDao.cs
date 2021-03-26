@@ -234,5 +234,30 @@ namespace Luxstay.Dao
             return home_id;
         }
 
+
+        public void update(Home home)
+        {
+            try
+            {
+
+                string sql = "Update Home " +
+                        "Set home_name = '" + home.home_name + "', " +
+                        "home_type = N'" + home.home_type + "', " +
+                        "room_number = " + home.room_number + ", " +
+                        "price = " + home.price + ", " +
+                        "place_id = '" + home.place.place_id + "', " +
+                        "image_intro = '" + home.image_intro + "', " +
+                        "address = N'" + home.address + "', " +
+                        "short_description = N'" + home.short_description + "', " +
+                        "detail_description = N'" + home.detail_description + "' " +
+                        "where home_id = " + home.home_id;
+                dataProvider.ExcuteNonQuery(sql);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi insert user: " + ex.Message);
+            }
+        }
+
     }
 }

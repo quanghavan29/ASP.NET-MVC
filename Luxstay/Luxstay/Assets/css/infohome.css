@@ -1,19 +1,4 @@
-﻿body {
-}
-
-.carousel-item img {
-    border-radius: 10px;
-}
-
-.card img {
-    border-radius: 10px;
-}
-
-.service__item {
-    position: relative;
-}
-
-.address_title p {
+﻿.address_title p {
     position: absolute;
     top: 245px;
     left: 30px;
@@ -42,8 +27,4 @@
     font-weight: bold;
     margin-left: -18px;
     margin-top: -15px;
-}
-
-.footer {
-    text-align: center;
 }

@@ -87,9 +87,24 @@
                                     }
                                 }
                                 <td style="vertical-align: middle;">
-                                    <a class="btn btn-sm" type="submit" href="cancelBookingController?id=<%=s.getIdBooking()%>" style="background-color: #f65e38; color: white;">
-                                        Huỷ Phòng
-                                    </a>
+                                    @if (booking.home.status == 0)
+                                    {
+                                        <span class="btn btn-sm" style="background-color: #28A745; color: white;">
+                                            Hoàn Tất
+                                        </span>
+                                    }
+                                    @if (booking.home.status == 1)
+                                    {
+                                        <span class="btn btn-sm" style="background-color: #FFC107; color: white;">
+                                            Đang Thuê
+                                        </span>
+                                    }
+                                    @if (booking.home.status == 2)
+                                    {
+                                        <a class="btn btn-sm" href="../CancelBooking?booking_id=@booking.booking_id" style="background-color: #f65e38; color: white;">
+                                            Huỷ Phòng
+                                        </a>
+                                    }
                                 </td>
                             </tr>
                         }

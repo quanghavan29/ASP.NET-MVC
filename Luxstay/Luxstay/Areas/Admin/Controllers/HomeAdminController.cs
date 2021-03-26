@@ -11,6 +11,7 @@ namespace Luxstay.Areas.Admin.Controllers
         // GET: Admin/HomeAdmin
         public ActionResult Index()
         {
+            // Go to Home page of admin
             return View();
         }
     }
