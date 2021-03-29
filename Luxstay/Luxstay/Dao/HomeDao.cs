@@ -58,16 +58,69 @@ namespace Luxstay.Dao
         }
 
         // Get all home by place id in database and pagging
-        public List<Home> findAllByPlaceId(string place_id, int pageIndex, int pageSize)
+        public List<Home> findAllByPlaceId(string place_id, int pageIndex, int pageSize, string home_type, string price, string order_by)
         {
             List<Home> homes = new List<Home>();
             int first = (pageIndex * pageSize) - (pageSize - 1);
             int max = pageIndex * pageSize;
             String query = "SELECT * FROM "
                           + "(SELECT ROW_NUMBER() OVER (ORDER BY home_id ASC) "
-                          + "AS rownum, * from Home h WHERE h.place_id = '" + place_id + "' and h.[restore] = 1) tbl "
+                          + "AS rownum, * from Home h WHERE h.place_id = '" + place_id
+                          + "' and h.[restore] = 1 ";
+            // Check value of home type
+            if (home_type != null) {
+                if (home_type.Equals("canho"))
+                {
+                    home_type = "Căn hộ dịch vụ";
+                }
+                else if (home_type.Equals("chungcu"))
+                {
+                    home_type = "Chung cư";
+                }
+                else if (home_type.Equals("homestay"))
+                {
+                    home_type = "Homestay";
+                }
+                else if (home_type.Equals("studio"))
+                {
+                    home_type = "Studio";
+                }
+                else if (home_type.Equals("bietthu"))
+                {
+                    home_type = "Biệt thự";
+                }
+                query += "and h.home_type = N'" + home_type + "'";
+            }
+
+            if (price != null) { 
+                if (price.Equals("range_1"))
+                {
+                    query += " and h.price between 500000 and 1000000";
+                }
+                else if (price.Equals("range_2"))
+                {
+                    query += " and h.price between 1000000 and 2000000";
+                }
+                else if (price.Equals("range_3"))
+                {
+                    query += " and h.price between 2000000 and 3000000";
+                }
+                else if (price.Equals("range_4"))
+                {
+                    query += " and h.price >= 3000000";
+                }
+            }
+
+            query += ") tbl "
                           + "JOIN Place p ON tbl.place_id = p.place_id "
                           + "WHERE rownum BETWEEN " + first + " and " + max;
+
+
+            if (order_by != null)
+            {
+                query += " Order by price " + order_by;
+            }
+
             DataTable dataTable = dataProvider.excuteQuery(query);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -126,10 +179,55 @@ namespace Luxstay.Dao
         }
 
         // Count all of home in database by place_id
-        public int countByPlace(string place_id)
+        public int countByPlace(string place_id, string home_type, string price)
         {
             String query = "SELECT COUNT(*) AS [total_home] FROM Home "
                         + "WHERE place_id = '" + place_id + "' and [restore] = 1";
+            // Check value of home type
+            if (home_type != null)
+            {
+                if (home_type.Equals("canho"))
+                {
+                    home_type = "Căn hộ dịch vụ";
+                }
+                else if (home_type.Equals("chungcu"))
+                {
+                    home_type = "Chung cư";
+                }
+                else if (home_type.Equals("homestay"))
+                {
+                    home_type = "Homestay";
+                }
+                else if (home_type.Equals("studio"))
+                {
+                    home_type = "Studio";
+                }
+                else if (home_type.Equals("bietthu"))
+                {
+                    home_type = "Biệt thự";
+                }
+                query += " and home_type = N'" + home_type + "'";
+            }
+
+            if (price != null)
+            {
+                if (price.Equals("range_1"))
+                {
+                    query += " and price between 500000 and 1000000";
+                }
+                else if (price.Equals("range_2"))
+                {
+                    query += " and price between 1000000 and 2000000";
+                }
+                else if (price.Equals("range_3"))
+                {
+                    query += " and price between 2000000 and 3000000";
+                }
+                else if (price.Equals("range_4"))
+                {
+                    query += " and price >= 3000000";
+                }
+            }
             DataTable dataTable = dataProvider.excuteQuery(query);
             return Int32.Parse(dataTable.Rows[0]["total_home"].ToString());
         }

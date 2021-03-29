@@ -12,7 +12,7 @@
 </head>
 
 <body style="color: #555555;">
-
+    <!-- Example single danger button -->
     <section>
         <div style="margin-bottom: 30px;">
             <hr />
@@ -21,13 +21,59 @@
             </p>
             <div style="display: flex; justify-content: space-between;">
                 <h3>@ViewBag.total_home homestay tại @ViewBag.place_name</h3>
+
+                <div style="position: absolute; margin-left: 460px;">
+                    <form action="../Place" method="GET">
+                        <input type="hidden" name="place_id" value="@ViewBag.place_id">
+                        <input type="hidden" name="place_name" value="@ViewBag.place_name">
+                        <input type="hidden" name="total_home" value="@ViewBag.total_home">
+                        <input type="hidden" name="home_type" value="@ViewBag.home_type">
+                        <input type="hidden" name="order_by" value="@ViewBag.order_by">
+                        <select style="color: gray; padding: 5px; border-radius: 5px;"
+                                name="price_search" class="form-select" aria-label="select example"
+                                onchange="this.form.submit()">
+                            <option value="">Giá chỗ ở</option>
+                            <option id="range_1" value="range_1">Từ 500.000đ - 1.000.000đ/đêm</option>
+                            <option id="range_2" value="range_2">Từ 1.000.000đ - 2.000.000đ/đêm</option>
+                            <option id="range_3" value="range_3">Từ 2.000.000đ - 3.000.000đ/đêm</option>
+                            <option id="range_4" value="range_4">Trên 3.000.000đ/đêm</option>
+                        </select>
+                    </form>
+                </div>
+                <div style="margin-left: 400px;">
+                    <form action="../Place" method="GET">
+                        <input type="hidden" name="place_id" value="@ViewBag.place_id">
+                        <input type="hidden" name="place_name" value="@ViewBag.place_name">
+                        <input type="hidden" name="total_home" value="@ViewBag.total_home">
+                        <input type="hidden" name="price_search" value="@ViewBag.price_search">
+                        <select style="color: gray; padding: 5px; border-radius: 5px;"
+                                name="home_type" class="form-select" aria-label="select example"
+                                onchange="this.form.submit()">
+                            <option value="">Loại Phòng</option>
+                            <option id="canho" value="canho">Căn hộ dịch vụ</option>
+                            <option id="chungcu" value="chungcu">Chung cư</option>
+                            <option id="homestay" value="homestay">Homestay</option>
+                            <option id="studio" value="studio">Studio</option>
+                            <option id="bietthu" value="bietthu">Biệt thự</option>
+                        </select>
+                    </form>
+                </div>
                 <div>
-                    <select style="color: gray; padding: 5px; border-radius: 5px;"
-                            class="form-select" aria-label="select example">
-                        <option selected>Sắp Xếp:    Lựa Chọn</option>
-                        <option value="1">Giá Tăng Dần</option>
-                        <option value="1">Giá Giảm Dần</option>
-                    </select>
+                    <form action="../Place" method="GET">
+                        <input type="hidden" name="place_id" value="@ViewBag.place_id">
+                        <input type="hidden" name="place_name" value="@ViewBag.place_name">
+                        <input type="hidden" name="total_home" value="@ViewBag.total_home">
+                        <input type="hidden" name="home_type" value="@ViewBag.home_type">
+                        <input type="hidden" name="pageIndex" value="@ViewBag.pageIndex">
+                        <input type="hidden" name="price_search" value="@ViewBag.price_search">
+                        <select style="color: gray; padding: 5px; border-radius: 5px;"
+                                name="order_by" class="form-select" aria-label="select example"
+                                onchange="this.form.submit()">
+                            <option value="">Sắp Xếp:    Lựa Chọn</option>
+                            <option id="asc" value="asc">Giá Tăng Dần</option>
+                            <option id="desc" value="desc">Giá Giảm Dần</option>
+                        </select>
+                    </form>
                 </div>
             </div>
         </div>
@@ -93,7 +139,7 @@
             {
                 int previous = currentPage - 1;
                 <li class="page-item">
-                    <a class="page-link" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@previous" aria-label="Previous">
+                    <a class="page-link" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@previous&home_type=@ViewBag.home_type&order_by=@ViewBag.order_by&price_search=@ViewBag.price_search" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -108,14 +154,14 @@
                             active += "active";
                         }
                     }
-                    <a class="page-link @active" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@i">@i</a>
+                    <a class="page-link @active" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@i&home_type=@ViewBag.home_type&order_by=@ViewBag.order_by&price_search=@ViewBag.price_search">@i</a>
                 </li>
             }
             @if (currentPage < ViewBag.totalPage)
             {
                 int next = currentPage + 1;
                 <li class="page-item">
-                    <a class="page-link" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@next" aria-label="Next">
+                    <a class="page-link" href="../Place?place_id=@ViewBag.place_id&total_home=@ViewBag.total_home&place_name=@ViewBag.place_name&pageIndex=@next&home_type=@ViewBag.home_type&order_by=@ViewBag.order_by&price_search=@ViewBag.price_search" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -123,6 +169,21 @@
             }
         </ul>
     </nav>
+
+    <script>
+        let price_search = "@ViewBag.price_search";
+        if (price_search != null && price_search != '') {
+            document.getElementById(price_search).setAttribute("selected", "selected");
+        }
+        let home_type = "@ViewBag.home_type";
+        if (home_type != null && home_type != '') {
+            document.getElementById(home_type).setAttribute("selected", "selected");
+        }
+        let order_by = "@ViewBag.order_by";
+        if (order_by != null && order_by != '') {
+            document.getElementById(order_by).setAttribute("selected", "selected");
+        }
+    </script>
 
 </body>
 

@@ -13,6 +13,26 @@ namespace Luxstay.Controllers
         // GET: Place
         public ActionResult Index()
         {
+            string price_search = null;
+            if (Request.QueryString["price_search"] != null && !Request.QueryString["price_search"].Equals(""))
+            {
+                price_search = Request.QueryString["price_search"];
+                ViewData["price_search"] = Request.QueryString["price_search"];
+            }
+            string home_type = null;
+            if (Request.QueryString["home_type"] != null && !Request.QueryString["home_type"].Equals(""))
+            {
+                home_type = Request.QueryString["home_type"];
+                ViewData["home_type"] = Request.QueryString["home_type"];
+            }
+
+            string order_by = null;
+            if (Request.QueryString["order_by"] != null && !Request.QueryString["order_by"].Equals(""))
+            {
+                order_by = Request.QueryString["order_by"];
+                ViewData["order_by"] = Request.QueryString["order_by"];
+            }
+
             HomeDao homeDao = new HomeDao();
             // Get value of place_id clicked
             string place_id = Request.QueryString["place_id"];
@@ -33,7 +53,7 @@ namespace Luxstay.Controllers
             int totalPage = 0;
 
             // Count all homes in database (Table Home) by place
-            int count = homeDao.countByPlace(place_id);
+            int count = homeDao.countByPlace(place_id, home_type, price_search);
             // IF count % pageSize == 0 => totalPage = count / pageSize
             if (count % pageSize == 0)
             {
@@ -53,9 +73,9 @@ namespace Luxstay.Controllers
             ViewData["totalPage"] = totalPage;
             // Display pageIndex to active page current
             ViewData["pageIndex"] = pageIndex;
-
+           
             // Display a list homes by place_id
-            List<Home> homes = homeDao.findAllByPlaceId(place_id, pageIndex, pageSize);
+            List<Home> homes = homeDao.findAllByPlaceId(place_id, pageIndex, pageSize, home_type, price_search, order_by);
             return View(homes);
         }
     }
