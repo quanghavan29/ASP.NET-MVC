@@ -140,6 +140,7 @@
     <Compile Include="Controllers\CancelBookingController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\HistoryBookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -177,6 +178,7 @@
     <Content Include="Assets\images\background_intro_2.png" />
     <Content Include="Assets\images\background_intro_3.png" />
     <Content Include="Assets\images\danang.png" />
+    <Content Include="Assets\images\file.png" />
     <Content Include="Assets\images\hanoi.png" />
     <Content Include="Assets\images\nhatrang.png" />
     <Content Include="Assets\images\product\sg_can_ho_1.jpg" />
@@ -245,6 +247,8 @@
     <Content Include="Views\HistoryBooking\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Update.cshtml" />
+    <Content Include="Views\ForgetPassword\Index.cshtml" />
+    <Content Include="Views\ForgetPassword\AcceptEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
