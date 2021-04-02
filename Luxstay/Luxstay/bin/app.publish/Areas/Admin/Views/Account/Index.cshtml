@@ -1,0 +1,95 @@
+﻿@using Luxstay.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title of the document</title>
+    <link rel="stylesheet" href="~/Assets/css/paging.css">
+</head>
+
+<body>
+    <span style="margin-top: 10px; font-size: 20px;">Quản Lí Tài Khoản</span>
+    <span style="margin-left: 850px;"><a href="Account/InsertAccount" type="button" class="btn btn-info" style="padding: 2px 7px 2px 7px;">Thêm Mới</a></span>
+    <section style="margin-top: 20px">
+        <div class="container">
+            <table class="table" style="font-size: 14px;">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" style="vertical-align: middle;">Email</th>
+                        <th scope="col" style="vertical-align: middle;">Phone</th>
+                        <th scope="col" style="vertical-align: middle;">Name</th>
+                        <th scope="col" style="vertical-align: middle;">Address</th>
+                        <th scope="col" style="vertical-align: middle;">Role</th>
+                        <th scope="col" style="vertical-align: middle;">Verify</th>
+                        <th scope="col" style="vertical-align: middle;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in ViewBag.users)
+                    {
+                        <tr>
+                            <td scope="col" style="vertical-align: middle;">@user.email</td>
+                            <td scope="col" style="vertical-align: middle;">@user.phone</td>
+                            <td scope="col" style="vertical-align: middle;">@user.name</td>
+                            <td scope="col" style="vertical-align: middle;">@user.address</td>
+                            <td scope="col" style="vertical-align: middle;">@user.role</td>
+                            <td scope="col" style="vertical-align: middle;">@user.verify</td>
+                            <td scope="col" style="vertical-align: middle;">
+                                <a href="Account/UpdateAccount?user_id=@user.user_id" type="button" class="btn btn-warning" style="padding: 2px 7px 2px 7px;">Sửa</a>
+                                <a href="../ManagerAccount/DeleteAccount?user_id=@user.user_id" type="button" class="btn btn-danger" style="padding: 2px 7px 2px 7px;">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- PAGGING -->
+        @*        <nav aria-label="Page navigation example">
+                @{
+                    int currentPage = ViewBag.pageIndex;
+                }
+                <ul class="pagination justify-content-center">
+                    @if (currentPage > 1)
+                    {
+                        int previous = currentPage - 1;
+                        <li class="page-item">
+                            <a class="page-link" href="Homestay?pageIndex=@previous" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = 1; i <= ViewBag.totalPage; i++)
+                    {
+                        <li class="page-item">
+                            @{
+                                string active = "";
+                                if (currentPage == i)
+                                {
+                                    active += "active";
+                                }
+                            }
+                            <a class="page-link @active" href="Homestay?pageIndex=@i">@i</a>
+                        </li>
+                    }
+                    @if (currentPage < ViewBag.totalPage)
+                    {
+                        int next = currentPage + 1;
+                        <li class="page-item">
+                            <a class="page-link" href="Homestay?pageIndex=@next" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+
+                    }
+                </ul>
+            </nav>*@
+    </section>
+
+
+
+</body>
+</html>
+

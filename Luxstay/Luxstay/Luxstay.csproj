@@ -149,6 +149,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\VerifyAccountController.cs" />
+    <Compile Include="Controllers\VerifyAccountLinkController.cs" />
     <Compile Include="Dao\BookingDao.cs" />
     <Compile Include="Dao\DataProvider.cs" />
     <Compile Include="Dao\HomeDao.cs" />
@@ -212,6 +213,7 @@
     <Content Include="Areas\Admin\Views\Account\UpdateAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Restore\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManagerBooking\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -249,6 +251,7 @@
     <Content Include="Views\Profile\Update.cshtml" />
     <Content Include="Views\ForgetPassword\Index.cshtml" />
     <Content Include="Views\ForgetPassword\AcceptEmail.cshtml" />
+    <Content Include="Views\VerifyAccountLink\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,11 +48,13 @@ namespace Luxstay.Controllers
                 {
                     // Send mail to verify
                     SendMailDao sendMailDao = new SendMailDao();
-                    string code_verify = sendMailDao.randomCode(4);
-                    Session["code_verify"] = code_verify;
-                    string subject = "Xác thực địa chỉ email!";
-                    string content = "Cảm ơn bạn đã đăng ký sử dụng dịch vụ của Luxstay! Mã xác thực của bạn là: " + code_verify;
-                    sendMailDao.SendMail(user.email, subject, content);
+                    sendMailDao.SendVerificationLinkEmail(user.email);
+                    /*                    string code_verify = sendMailDao.randomCode(4);*/
+                    /*                    Session["code_verify"] = code_verify;
+                                        string subject = "Xác thực địa chỉ email!";
+                                        string content = "Cảm ơn bạn đã đăng ký sử dụng dịch vụ của Luxstay! Mã xác thực của bạn là: " + code_verify;
+                                        string link = "< a href = '" + varifyUrl + "'>" + "Bấm vào đây để verify" + "</a>";
+                                        sendMailDao.SendMail(user.email, subject, link);*/
 
                     return View();
                 }

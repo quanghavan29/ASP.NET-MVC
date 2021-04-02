@@ -2,6 +2,7 @@
 using Luxstay.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,8 +22,21 @@ namespace Luxstay.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult InsertHomestay()
         {
+            string image_intro = "";
             // Get value from input when admin input and submit
-            string image_intro = Request["image_intro"];
+            HttpPostedFileBase file = Request.Files["image_intro"];
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Assets/images/product"),
+                                               Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    image_intro = Path.GetFileName(file.FileName);
+                }
+                catch
+                {
+                    Console.WriteLine("loi upload image!");
+                }
             string home_name = Request["home_name"];
             string short_description = Request["short_description"];
             int price = 0;

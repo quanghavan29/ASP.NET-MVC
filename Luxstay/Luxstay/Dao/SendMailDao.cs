@@ -49,6 +49,36 @@ namespace Luxstay.Dao
             return code;
         }
 
+        public void SendVerificationLinkEmail(string emailId)
+        {
+            var varifyUrl = "https://localhost:44365/VerifyAccountLink"; // local
+            var fromMail = new MailAddress("coosi29@gmail.com", "welcome mithilesh");
+            var toMail = new MailAddress(emailId); // emailId
+            var frontEmailPassowrd = "parbgbmxvpksjlyo";
+            string subject = "Your account is successfull created";
+            string body = "<br/><br/>We are excited to tell you that your account is" +
+              " successfully created. Please click on the below link to verify your account" +
+              " <br/><br/><a href='" + varifyUrl + "'>" + "Verify" + "</a> ";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromMail.Address, frontEmailPassowrd)
+
+            };
+            using (var message = new MailMessage(fromMail, toMail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+                smtp.Send(message);
+        }
+
 
     }
 }

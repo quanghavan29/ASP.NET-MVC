@@ -24,27 +24,30 @@ namespace Luxstay.Dao
                             + "JOIN Place p ON tbl.place_id = p.place_id "
                             + "WHERE rownum BETWEEN " + first + " and " + max;
             DataTable dataTable = dataProvider.excuteQuery(query);
-            for (int i = 0; i < dataTable.Rows.Count; i++)
+            if (dataTable.Rows.Count > 0)
             {
-                Home home = new Home();
-                home.home_id = Int32.Parse(dataTable.Rows[i]["home_id"].ToString());
-                home.home_name = dataTable.Rows[i]["home_name"].ToString();
-                home.home_type = dataTable.Rows[i]["home_type"].ToString();
-                home.room_number = Int32.Parse(dataTable.Rows[i]["room_number"].ToString());
-                home.price = Int32.Parse(dataTable.Rows[i]["price"].ToString());
-                home.image_intro = dataTable.Rows[i]["image_intro"].ToString();
-                home.address = dataTable.Rows[i]["address"].ToString();
-                home.short_description = dataTable.Rows[i]["short_description"].ToString();
-                home.detail_description = dataTable.Rows[i]["detail_description"].ToString();
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    Home home = new Home();
+                    home.home_id = Int32.Parse(dataTable.Rows[i]["home_id"].ToString());
+                    home.home_name = dataTable.Rows[i]["home_name"].ToString();
+                    home.home_type = dataTable.Rows[i]["home_type"].ToString();
+                    home.room_number = Int32.Parse(dataTable.Rows[i]["room_number"].ToString());
+                    home.price = Int32.Parse(dataTable.Rows[i]["price"].ToString());
+                    home.image_intro = dataTable.Rows[i]["image_intro"].ToString();
+                    home.address = dataTable.Rows[i]["address"].ToString();
+                    home.short_description = dataTable.Rows[i]["short_description"].ToString();
+                    home.detail_description = dataTable.Rows[i]["detail_description"].ToString();
 
-                Place place = new Place();
-                place.place_id = dataTable.Rows[i]["place_id"].ToString();
-                place.place_name = dataTable.Rows[i]["place_name"].ToString();
-                place.image = dataTable.Rows[i]["image"].ToString();
-                place.total_home = Int32.Parse(dataTable.Rows[i]["total_home"].ToString());
+                    Place place = new Place();
+                    place.place_id = dataTable.Rows[i]["place_id"].ToString();
+                    place.place_name = dataTable.Rows[i]["place_name"].ToString();
+                    place.image = dataTable.Rows[i]["image"].ToString();
+                    place.total_home = Int32.Parse(dataTable.Rows[i]["total_home"].ToString());
 
-                home.place = place;
-                homes.Add(home);
+                    home.place = place;
+                    homes.Add(home);
+                }
             }
             return homes;
         }
@@ -52,9 +55,16 @@ namespace Luxstay.Dao
         // Count all of home in database
         public int count()
         {
-            String query = "SELECT COUNT(*) AS [total_home] FROM Home where [restore] = 1";
-            DataTable dataTable = dataProvider.excuteQuery(query);
-            return Int32.Parse(dataTable.Rows[0]["total_home"].ToString());
+            try
+            {
+                String query = "SELECT COUNT(*) AS [total_home] FROM Home where [restore] = 1";
+                DataTable dataTable = dataProvider.excuteQuery(query);
+                return Int32.Parse(dataTable.Rows[0]["total_home"].ToString());
+            } catch (Exception)
+            {
+                return 0;
+            }
+
         }
 
         // Get all home by place id in database and pagging
@@ -68,7 +78,8 @@ namespace Luxstay.Dao
                           + "AS rownum, * from Home h WHERE h.place_id = '" + place_id
                           + "' and h.[restore] = 1 ";
             // Check value of home type
-            if (home_type != null) {
+            if (home_type != null)
+            {
                 if (home_type.Equals("canho"))
                 {
                     home_type = "Căn hộ dịch vụ";
@@ -92,7 +103,8 @@ namespace Luxstay.Dao
                 query += "and h.home_type = N'" + home_type + "'";
             }
 
-            if (price != null) { 
+            if (price != null)
+            {
                 if (price.Equals("range_1"))
                 {
                     query += " and h.price between 500000 and 1000000";

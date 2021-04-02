@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DBConnect-Web.config Connection String" description="DBConnect Connection String used in web.config by the application to access the database." defaultValue="Data Source=localhost;Initial Catalog=Luxstay;user=coosi29;password=123" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\ASP\.NET-MVC\\Luxstay\\Luxstay\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DBConnect']/@connectionString" />
+  </parameter>
+</parameters>
