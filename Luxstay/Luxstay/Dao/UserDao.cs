@@ -158,5 +158,19 @@ namespace Luxstay.Dao
                 Console.WriteLine("Lỗi insert user: " + ex.Message);
             }
         }
+
+        public void updatePasswordByEmail(string email, string password)
+        {
+            try
+            {
+                string query = "Update [User] set [password] = '" + password + "' "
+                                + "where [email] = '" + email + "'";
+                dataProvider.ExcuteNonQuery(query);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi update password: " + ex.Message);
+            }
+        }
     }
 }

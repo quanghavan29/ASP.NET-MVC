@@ -52,7 +52,7 @@ namespace Luxstay.Controllers
                     Session["code_verify"] = code_verify;
                     string subject = "Xác thực địa chỉ email!";
                     string content = "Cảm ơn bạn đã đăng ký sử dụng dịch vụ của Luxstay! Mã xác thực của bạn là: " + code_verify;
-                    sendMailDao.SendMail("quanghavan29@gmail.com", subject, content);
+                    sendMailDao.SendMail(user.email, subject, content);
 
                     return View();
                 }

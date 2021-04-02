@@ -19,22 +19,9 @@
         <div class="content-404">
             <img src="images/404/404.png" class="img-responsive" alt="" />
             <h3>Chào Mừng Đến Với Luxstay</h3>
-            <p style="font-size: 18px;">Chúng tôi đã gửi tới mã xác nhận đến <span style="font-weight: bold;">quanghavan29@gmail.com</span></p>
+            <p style="font-size: 18px;">Chúng tôi đã gửi một mật khẩu mới tới <span style="font-weight: bold;">@ViewBag.email</span></p>
+            <p>Hãy bảo mật thông tin của bạn. <a href="../Login">Trở về trang đăng nhập</a></p>
         </div>
-    </div>
-    <div style="font-size: 17px; text-align: center;">
-        <i style="font-size:18px; color: red; margin-left: -35px;" class="fa">&#xf071;</i>
-        <span style="margin-left: 2px; color: red;">@ViewBag.verify_fail</span>
-        <p style="margin-top: -12px;"></p>
-        <form action="VerifyAccount" method="POST">
-            <input class="auth-form-input" type="text" name="code"
-                   placeholder="Nhập mã xác nhận" required="required" />
-            <input type="submit" value="Xác nhận" />
-        </form>
-        <br />
-        <span>
-            không nhận được mã xác nhận? <a href="VerifyAccount/ResendMail">Gửi lại ở đây.</a>
-        </span>
     </div>
 </body>
 </html>

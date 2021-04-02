@@ -15,28 +15,12 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
-    <!-- Authen form -->
-    @*                        <c:if test="${resend != null}">
-            <div style="display: flex; margin-bottom: 2px; color: #0101DF;">
-                <i class="material-icons" style="font-size: 19px;">&#xe88f;</i>
-                <span>Check Your Email.</span>
-            </div>
-        </c:if>
-
-
-
-        <c:if test="${verifySuccess != null}">
-            <div style="display: flex; margin-bottom: 2px; color: #339900;">
-                <i style='font-size:19px' class='fas'>&#xf058;</i>
-                <span>${verifySuccess}</span> <a href="login" style="margin-left: 10px;"> Login</a>
-            </div>
-        </c:if>*@
 
     <div class="container text-center">
         <div class="content-404">
             <img src="images/404/404.png" class="img-responsive" alt="" />
             <h3>Chào Mừng Đến Với Luxstay</h3>
-            <p style="font-size: 18px;">Chúng tôi đã gửi tới mã xác nhận đến <span style="font-weight: bold;">quanghavan29@gmail.com</span></p>
+            <p style="font-size: 18px;">Chúng tôi đã gửi tới mã xác nhận đến <span style="font-weight: bold;">@Session["emailRegister"]</span></p>
         </div>
     </div>
     <div style="font-size: 17px; text-align: center;">
